@@ -1,0 +1,21 @@
+name: gcc-arm-none-eabi-toolchain
+description: GNU Arm Embedded Toolchain, 10-2020q4
+author: Aegean Odyssey
+runs:
+  using: composite
+  steps:
+    - name: fetch, unpack, install
+      run: |
+        URL="https://developer.arm.com/-/media/Files/downloads/gnu-rm"
+        URL="$URL/10-2020q4"
+        URL="$URL/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2"
+        DIR=gcc-arm-none-eabi-10-2020-q4-major
+        cd /usr/local
+        sudo wget -nv -O toolchain.tar.bz2 "$URL"
+        sudo tar -xjf toolchain.tar.bz2
+        sudo mv bin bin.hide
+        sudo ln -s "$DIR"/bin bin
+      shell: bash
+branding:
+  icon: download
+  color: green
